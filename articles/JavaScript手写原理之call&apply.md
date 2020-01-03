@@ -1,10 +1,14 @@
 ---
-noteId: "bcd630b02dd111ea80b943a35c9c4025"
+noteId: "965ab1a02e5711eab84f255da7e1e776"
 tags: []
 
 ---
 
+# JavaScript手写原理之call/apply
+
+
 >call/apply在我们日常开发中也是经常会用到的两个api，如何使用它们我们并不陌生,所以今天我们讨论下如何实现它
+
 
 ## call
 
@@ -41,7 +45,7 @@ if(typeof thisArg === 'string' || typeof thisArg === 'boolean' || typeof thisArg
 
 thisArg = thisArg || globalEnv();
 ```
-> Tip:
+> Tip:基本类型进行转换相应类型的实例对象
 ```js
 var numberObj = new Object(22);
 numberObj.constructor === Number // => true
@@ -56,10 +60,10 @@ numberObj instanceof Object // => true
 
 1. 由new调用?绑定到新创建的对象。
 2. 由call或者apply(或者bind)调用?绑定到指定的对象。
-3. 由上下文对象调用?绑定到那个上下文对象。
+3. 由上下文对象调用?绑定到那个上下文对象即`obj.fn()`,`fn`内`this`指向就是`obj`。
 4. 默认:在严格模式下绑定到undefined，否则绑定到全局对象。
 
-首先,`function`不一定是构造函数所以1行不通，2是我们这次要实现的pass,因为`call`就是要绑定到指定对象，全局或者`undefined`只是其中一种情况，所以我们只能通过3将函数绑定到上下文对象上即`thisArg`,分析到这里思路就非常明确了,无非就是给绑定对象加个`function`方法
+首先,`function`不一定是构造函数所以1行不通，2是我们这次要实现的pass,因为`call`就是要绑定到指定对象，全局或者`undefined`只是其中一种情况，所以我们通过3将函数绑定到上下文对象上即`thisArg`更加符合要求,分析到这里思路就非常明确了,无非就是给绑定对象`thisArg`加个`function`方法
 
 ```js
 var uiqueFn = Date.now();
@@ -157,7 +161,6 @@ Function.prototype._myapply = function (thisArg) {
 }
 ```
 
->
 
 
 
