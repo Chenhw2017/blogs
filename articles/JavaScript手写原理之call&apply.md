@@ -21,7 +21,7 @@
 
  **对于第一点**
 
-这里需要处理下参数的兼容性及相应的性能优化:
+这里需要处理下参数的兼容性:
 
 - thishisArg为`null`或者`undefined`,则`this`为宿主环境全局对象
 - thishisArg 为 `null`或者`undefined`且参数只有一个时或者参数为空时，就没必要进行下面逻辑了
@@ -35,11 +35,13 @@ function globalEnv () {
 if(typeof thisArg === 'string' || typeof thisArg === 'boolean' || typeof thisArg === 'number') { 
     thisArg = new Object(thisArg);
 }else if (!arguments.length || (thisArg === null || thisArg === void 0) && arguments.length === 1) { // call() || call(null)
+    // 如果参数为空或者只有个一个null或者undefined参数，这种情况就等于直接调用该函数如果继续执行
     return this();
 }
 
 thisArg = thisArg || globalEnv();
 ```
+
 > Tip:基本类型进行转换相应类型的实例对象
 ```js
 var numberObj = new Object(22);
@@ -156,7 +158,11 @@ Function.prototype._myapply = function (thisArg) {
 }
 ```
 
+## 参考
 
+- [blog.usejournal.com](https://blog.usejournal.com/implement-your-own-call-apply-and-bind-method-in-javascript-42cc85dba1b)
+- https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call
+- https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply
 
 
 

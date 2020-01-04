@@ -1,4 +1,23 @@
 require('../demos/call_bind')
+
+function getEnvNAME() { 
+    // 这里的this不是window，是jest对象
+    // console.log(this.name)
+    return this.name;
+}
+
+function testFuntion (time) {
+    let obj = {};
+    let count = 0 ;
+    let startTime = new Date().getTime();
+    let endTime = 0;
+    while (endTime < startTime + time) {
+        count++;
+        getEnvNAME._mycall()
+        endTime = new Date().getTime();
+    }
+    return count;
+}
 // 注意这里的全局this指的是jest对象this不是window
 describe('测试_mycall方法', () => {
     function setName(name) { 
@@ -14,6 +33,7 @@ describe('测试_mycall方法', () => {
     }
 
     it('参数为空时,this为宿主环境全局对象', () => {
+        console.log(testFuntion(1000));
         let envName =  getEnvNAME._mycall();
         expect(envName === 'nodejs').toBeTruthy();
     });
