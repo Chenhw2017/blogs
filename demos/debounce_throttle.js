@@ -4,17 +4,23 @@
 // 4. 只有稳定之后才会按下快门即执行fn
 
 function debounce(fn, threshhold){
+    if(!fn instanceof Function) {
+        throw new TypeError('Expected a function')
+    }
     let timer = null;
-    return function () {
+    return function (...arg) {
         clearTimeout(timer);
         timer = setTimeout(() => {
-            fn.apply(this)
+            fn.apply(this, arg)
         },threshhold)
     };
 }
 
 
 function throttle2(fun, threshhold) {
+    if(!fun instanceof Function) {
+        throw new TypeError('Expected a function')
+    }
     let limited = false; // 节流阀标志位
     let timer = null;
     let start = Date.now();
@@ -22,7 +28,6 @@ function throttle2(fun, threshhold) {
     return function (...args) {
         let current = Date.now();
         limited = limited && current- start < threshhold
-        console.log('limited',limited,current- start,...args)
         if (limited) {
             clearTimeout(timer)
             timer = setTimeout(() => {
@@ -41,6 +46,9 @@ function throttle2(fun, threshhold) {
 // 间隔时间threshhold内值执行一次
 
 function throttle(fn, threshhold) {
+    if(!fn instanceof Function) {
+        throw new TypeError('Expected a function')
+    }
     let limited = false;  // 节流阀标志位
     let start = Date.now();
     threshhold = threshhold || 500
