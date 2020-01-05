@@ -5,10 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        #panel {
+            height: 800px;
+            width: 800px;
+            background: red;
+        }
+    </style>
 </head>
 <body>
+    <div id="panel">
+    <button id="btn">google</button>
+    </div>
+
+    <input type="text" id="throttle">
     <script src="./call_bind.js"></script>
     <script src="./call.js"></script>
     <script src="./deepClone.js"></script>
+    <script src="./debounce_throttle.js" type="module"></script>
+    <script>
+        document.getElementById('btn').addEventListener('click',function() {
+            setTimeout(function(){
+                window.open('https://www.google.com.hk/')
+            },1000)
+           
+        })
+    </script>
 </body>
 </html>

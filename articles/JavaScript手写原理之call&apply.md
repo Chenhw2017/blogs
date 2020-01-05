@@ -84,7 +84,7 @@ for (var index = 1; index < arguments.length; index++) {
 
 ### 对于3,4
 
-函数调用获取结果后，将添加的属性删除即可，并把函数结果返回
+函数调用获取结果后，将添加的`uiqueFn`属性删除即可，并把函数结果返回
 ```js
     delete  thisArg[uiqueFn]; // 2
     return result;

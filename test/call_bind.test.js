@@ -1,5 +1,6 @@
 require('../demos/call_bind')
 // 注意这里的全局this指的是jest对象this不是window
+// 由于单元测试启用了对import模块语法支持，开启了严格模式
 describe('测试_mycall方法', () => {
     function setName(name) { 
         this.name = name;
@@ -9,23 +10,23 @@ describe('测试_mycall方法', () => {
 
     function getEnvNAME() { 
         // 这里的this不是window，是jest对象
-        // console.log(this.name)
-        return this.name;
+        // console.log(this)
+        return this;
     }
 
-    it('参数为空时,this为宿主环境全局对象', () => {
+    it('参数为空时,严格模式下this为undefined', () => {
         let envName =  getEnvNAME._mycall();
-        expect(envName === 'nodejs').toBeTruthy();
+        expect(envName === void 0).toBeTruthy();
     });
 
-    it('第一个参数为undefined,this为宿主环境全局对象', () => {
+    it('第一个参数为undefined,严格模式下this为undefined', () => {
         let envName =  getEnvNAME._mycall(void 0);
-        expect(envName === 'nodejs').toBeTruthy();
+        expect(envName === void 0).toBeTruthy();
     });
     
-    it('参数为null,this为宿主环境全局对象', () => {
+    it('参数为null,严格模式下this为undefined', () => {
         let envName =  getEnvNAME._mycall(null);
-        expect(envName === 'nodejs').toBeTruthy();
+        expect(envName === void 0).toBeTruthy();
     });
 
     it('第一个参数为number时,this为Object构造的Number类型的实例对象', () => {
@@ -60,12 +61,13 @@ describe('测试_mycall方法', () => {
     });
 
 
-    it('参数只有Obj时,this为Obj对象', () => {
+    it('正常情况参数第一个Obj时,this为Obj对象', () => {
         let obj = {
             name: 'obj name'
         }
-        let envName =  getEnvNAME._mycall(obj);
-        expect(envName === obj.name).toBeTruthy();
+        let newName = 'newName'
+        setName._mycall(obj, newName);
+        expect(newName === obj.name).toBeTruthy();
     });
 
 
@@ -81,7 +83,7 @@ describe('测试_myapply方法', () => {
     function getEnvNAME() { 
         // 这里的this不是window，是jest对象
         // console.log(this.name)
-        return this.name;
+        return this;
     }
 
     function getArguments() { 
@@ -92,17 +94,17 @@ describe('测试_myapply方法', () => {
 
     it('参数为空时,this为宿主环境全局对象', () => {
         let envName =  getEnvNAME._myapply();
-        expect(envName === 'nodejs').toBeTruthy();
+        expect(envName === void 0).toBeTruthy();
     });
 
     it('第一个参数为undefined,this为宿主环境全局对象', () => {
         let envName =  getEnvNAME._myapply(void 0);
-        expect(envName === 'nodejs').toBeTruthy();
+        expect(envName === void 0).toBeTruthy();
     });
     
     it('第一个参参数为null,this为宿主环境全局对象', () => {
         let envName =  getEnvNAME._myapply(null);
-        expect(envName === 'nodejs').toBeTruthy();
+        expect(envName === void 0).toBeTruthy();
     });
 
     it('第一个参数为number时,this为Object构造的Number类型的实例对象', () => {
