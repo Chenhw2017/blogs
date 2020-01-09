@@ -1,3 +1,9 @@
+---
+noteId: "50d910e0328a11eab43ee110b9dbd95a"
+tags: []
+
+---
+
 
 # blogs
 
@@ -25,7 +31,7 @@
 ...TODO
 
 ## HTTP篇
-...TODO
+- [别搜了，http(图)看这篇就够了](https://github.com/Chenhw2017/blogs/issues/3)
 
 ## 经典书籍分享
  - [你不知道的Javascipt系列](https://github.com/Chenhw2017/blogs/books/你不知道的的Javascript.md)

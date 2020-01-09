@@ -1,3 +1,9 @@
+---
+noteId: "ea0679b0328a11eab43ee110b9dbd95a"
+tags: []
+
+---
+
 
 # JavaScript手写原理之call/apply
 
