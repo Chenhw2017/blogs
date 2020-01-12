@@ -1,17 +1,12 @@
----
-noteId: "50d910e0328a11eab43ee110b9dbd95a"
-tags: []
-
----
-
 
 # blogs
 
 >千里之行始于足下，水滴石穿非一日之功，仅以此博客记录自己的前端成长之路，并加以总结以和大家分享交流，码字总结不易，如果你觉得对你有帮助，不吝给个star小星星，如果你觉得错误或者需要改进的地方，欢迎评论指教:smile:
 
 ## 最近更新
-- [JavaScript手写原理之call/apply](https://github.com/Chenhw2017/blogs/issues/1)
+
 - [JavaScript手写原理之节流与防抖](https://github.com/Chenhw2017/blogs/issues/2)
+- [别搜了，http(图)看这篇就够了](https://github.com/Chenhw2017/blogs/
 
 ## JavaScript 
 - [JavaScript手写原理之call/apply](https://github.com/Chenhw2017/blogs/issues/1)
