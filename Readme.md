@@ -6,7 +6,7 @@
 ## 最近更新
 
 - [JavaScript手写原理之节流与防抖](https://github.com/Chenhw2017/blogs/issues/2)
-- [别搜了，http(图)看这篇就够了](https://github.com/Chenhw2017/blogs/
+- [别搜了，http(图)看这篇就够了](https://github.com/Chenhw2017/blogs/issues/3)
 
 ## JavaScript 
 - [JavaScript手写原理之call/apply](https://github.com/Chenhw2017/blogs/issues/1)
